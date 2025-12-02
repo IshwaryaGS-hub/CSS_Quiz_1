@@ -34,6 +34,4 @@ It includes a beautiful UI, timer, progress tracking, and a stylish modal-based 
 
 Passionate Web Developer | Frontend + Backend | 
 
-UI theme (CSS + Bootstrap)
 
-Modal design
