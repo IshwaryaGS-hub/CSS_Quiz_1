@@ -5,31 +5,33 @@ It includes a beautiful UI, timer, progress tracking, and a stylish modal-based 
 
 ##  Features
 
-Modern, clean, responsive quiz interface
+-- Modern, clean, responsive quiz interface
 
-10-minute auto-submit countdown timer
+-- 10-minute auto-submit countdown timer
 
-Progress bar that updates as you answer
+-- Progress bar that updates as you answer
 
-30 multiple-choice CSS questions
+-- 30 multiple-choice CSS questions
 
-Highlights correct and wrong answers
+-- Highlights correct and wrong answers
 
 ## Animated result modal with:
 
-Total Score
+-- Total Score
 
-Correct & Wrong Count
+-- Correct & Wrong Count
 
-Percentage
+-- Percentage
 
-Performance Summary
+-- Performance Summary
 
 ## Developed by:
 
 👩‍💻 Developer
 
 ✨ Ishwarya Gopinathan __galwhocodes__
+
+
 Passionate Web Developer | Frontend + Backend | 
 
 UI theme (CSS + Bootstrap)
