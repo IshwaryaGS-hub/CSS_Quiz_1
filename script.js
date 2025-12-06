@@ -65,7 +65,7 @@ const quizData = [
       "&lt;p style=&quot;color: red;&quot;&gt;Hello&lt;/p&gt;",
       "&lt;p css=&quot;color: red;&quot;&gt;Hello&lt;/p&gt;",
       "&lt;style=&quot;color: red;&quot;&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/style&gt;",
-      "&lt;css&gt;color:red;&lt;/css&gt;"
+      "&lt;css&gt;color:red&lt;/css&gt;"
     ], 
     answer: "&lt;p style=&quot;color: red;&quot;&gt;Hello&lt;/p&gt;" 
   },
@@ -81,7 +81,7 @@ const quizData = [
   },
 
   { question: "14) Select all <p> elements", 
-    options: ["p {}","#p {}",".p {}","<p> {}"], 
+    options: ["p {}", "#p {}", ".p {}", "<p> {}"], 
     answer: "p {}" 
   },
 
@@ -150,18 +150,17 @@ const quizData = [
     answer: "list-style:none" 
   },
 
-{
-  question: "28) What is the default display value of &lt;div&gt;?",
-  options: ["inline", "block", "inline-block", "flex"],
-  answer: "block"
-},
+  {
+    question: "28) What is the default display value of &lt;div&gt;?",
+    options: ["inline", "block", "inline-block", "flex"],
+    answer: "block"
+  },
 
-{
-  question: "29) What is the default display value of &lt;span&gt;?",
-  options: ["block", "inline", "inline-block", "table"],
-  answer: "inline"
-},
-
+  {
+    question: "29) What is the default display value of &lt;span&gt;?",
+    options: ["block", "inline", "inline-block", "table"],
+    answer: "inline"
+  },
 
   { question: "30) Best CSS method for large websites?", 
     options: ["Inline","Internal","External","HTML style"], 
@@ -176,6 +175,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const quizContainer = document.getElementById("quizQuestions");
   const progressBar = document.getElementById("quizProgress");
 
+  // Decode HTML entities
+  function decodeHTML(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   // Generate questions dynamically
   quizData.forEach((q, index) => {
     const questionDiv = document.createElement("div");
@@ -185,10 +191,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     q.options.forEach((opt, optIndex) => {
       const optId = `q${index}_opt${optIndex}`;
+      const encoded = opt.replace(/"/g, '&quot;');
 
       optionsHTML += `
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="q${index}" value="${opt}" id="${optId}" onchange="updateProgress()">
+          <input class="form-check-input" type="radio" 
+            name="q${index}" 
+            value="${encoded}" 
+            id="${optId}" 
+            onchange="updateProgress()">
           <label class="form-check-label" for="${optId}">${opt}</label>
         </div>
       `;
@@ -235,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
     progressBar.textContent = percent + "%";
   };
 
-
   // Submit quiz
   window.submitQuiz = function () {
 
@@ -252,16 +262,19 @@ document.addEventListener("DOMContentLoaded", function () {
       allOptions.forEach(option => {
         const label = document.querySelector(`label[for="${option.id}"]`);
 
-        if (option.value === q.answer) {
+        // Mark correct answer
+        if (decodeHTML(option.value) === decodeHTML(q.answer)) {
           label.classList.add("correct");
         }
 
-        if (selected && option.id === selected.id && selected.value !== q.answer) {
+        // Mark wrong selected
+        if (selected && option.id === selected.id &&
+            decodeHTML(selected.value) !== decodeHTML(q.answer)) {
           label.classList.add("wrong");
         }
       });
 
-      if (selected && selected.value === q.answer) {
+      if (selected && decodeHTML(selected.value) === decodeHTML(q.answer)) {
         score++;
         correct++;
       } else {
@@ -274,7 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showResult(score, correct, wrong);
   };
-
 
   // Show result card
   function showResult(score, correct, wrong) {

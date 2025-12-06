@@ -1,3 +1,4 @@
+/* ----------- PAGE & TYPOGRAPHY ----------- */
 body { 
   background: linear-gradient(to right, #e0eafc, #cfdef3);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,6 +15,7 @@ h1 {
   color: #ff6b6b;
 }
 
+/* ----------- PROGRESS BAR ----------- */
 .progress {
   height: 25px;
   border-radius: 12px;
@@ -26,6 +28,7 @@ h1 {
   transition: width 0.4s ease;
 }
 
+/* ----------- QUIZ CARD ----------- */
 .quiz-card {
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   border-radius: 12px;
@@ -39,23 +42,43 @@ h1 {
   background: linear-gradient(145deg, #f7f7f7, #e8f0fe);
 }
 
+/* ----------- RADIO BUTTON + OPTION ALIGNMENT ----------- */
+.form-check {
+  margin-bottom: 12px;
+}
 
 label.form-check-label {
-  display: block;
-  padding: 10px 14px;
+  display: flex;                
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.25s ease;
+  background: #ffffff;
+  border: 1px solid #ddd;       
 }
+
+label.form-check-label:hover {
+  background: #eef3ff;
+}
+
+
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
 
 .correct {
   background-color: #d4edda !important;
-  border-left: 5px solid #28a745;
+  border-left: 5px solid #28a745 !important;
 }
 
 .wrong {
   background-color: #f8d7da !important;
-  border-left: 5px solid #dc3545;
+  border-left: 5px solid #dc3545 !important;
 }
 
 .answer-text {
@@ -64,7 +87,7 @@ label.form-check-label {
   color: #155724;
 }
 
-
+/* ----------- RESULT CARD ----------- */
 #quizResult .result-card {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
@@ -90,11 +113,13 @@ label.form-check-label {
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
+/* ----------- ANIMATION ----------- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ----------- BUTTONS ----------- */
 button.btn-primary {
   background: #2575fc;
   border: none;
